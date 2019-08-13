@@ -28,7 +28,7 @@ class DBStorage:
                                              environ['HBNB_MYSQL_PWD'],\
                                              environ['HBNB_MYSQL_HOST'],\
                                              environ['HBNB_MYSQL_DB']), pool_pre_ping=True)
-        if environ['HBNB_ENV'] == 'test':
+        if 'HBNB_ENV' in environ and environ['HBNB_ENV'] == 'test':
             Base.metadata.drop_all(bind=self.__engine)
 
     def all(self, cls=None):
@@ -69,5 +69,5 @@ class DBStorage:
         """ doc """
 
         Base.metadata.create_all(self.__engine)
-        tmpSession = sessionmaker(bind=engine, expire_on_commit=False)
+        tmpSession = sessionmaker(bind=self.__engine, expire_on_commit=False)
         self.__session = scoped_session(tmpSession)()
