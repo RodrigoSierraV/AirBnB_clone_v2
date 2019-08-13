@@ -1,4 +1,4 @@
-B1;95;0c#!/usr/bin/python3
+#!/usr/bin/python3
 """This is the db storage class for AirBnB"""
 import json
 from os import environ
