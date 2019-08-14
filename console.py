@@ -44,10 +44,11 @@ class HBNBCommand(cmd.Cmd):
             my_list = line.split(" ")
             for ind, param in enumerate(my_list[1:]):
                 fq = param.find('"')
-                newval = param[fq + 1:-1].replace('"', '\\"')
-                newval = newval.replace('_', ' ')
-                newstr = param[:fq + 1] + newval + '"'
-                my_list[ind + 1] = newstr
+                if fq != -1
+                    newval = param[fq + 1:-1].replace('"', '\\"')
+                    newval = newval.replace('_', ' ')
+                    newstr = param[:fq + 1] + newval + '"'
+                    my_list[ind + 1] = newstr
 
             obj = eval("{}({})".format(my_list[0], ", ".join(my_list[1:])))
             obj.save()
