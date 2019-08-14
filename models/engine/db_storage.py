@@ -22,12 +22,13 @@ class DBStorage:
 
     def __init__(self):
         """ doc """
-        
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.\
-                                      format(environ['HBNB_MYSQL_USER'],\
-                                             environ['HBNB_MYSQL_PWD'],\
-                                             environ['HBNB_MYSQL_HOST'],\
-                                             environ['HBNB_MYSQL_DB']), pool_pre_ping=True)
+
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
+                                      format(environ['HBNB_MYSQL_USER'],
+                                             environ['HBNB_MYSQL_PWD'],
+                                             environ['HBNB_MYSQL_HOST'],
+                                             environ['HBNB_MYSQL_DB']),
+                                      pool_pre_ping=True)
         if 'HBNB_ENV' in environ and environ['HBNB_ENV'] == 'test':
             Base.metadata.drop_all(bind=self.__engine)
 
@@ -49,12 +50,11 @@ class DBStorage:
                     ret_dic.update({key: obj})
         return ret_dic
 
-
     def new(self, obj):
         """ doc """
-        
+
         self.__session.add(obj)
-    
+
     def save(self):
         """ doc """
 

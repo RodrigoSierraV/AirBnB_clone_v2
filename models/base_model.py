@@ -7,6 +7,7 @@ from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
+
 class BaseModel:
     """This class will defines all common attributes/methods
     for other classes
@@ -46,7 +47,6 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-        
 
     def __str__(self):
         """returns a string
@@ -89,4 +89,3 @@ class BaseModel:
             none
         """
         models.storage.delete(self)
-
