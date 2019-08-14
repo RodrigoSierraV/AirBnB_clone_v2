@@ -74,7 +74,7 @@ class HBNBCommand(cmd.Cmd):
                 raise NameError()
             if len(my_list) < 2:
                 raise IndexError()
-            objects = storage.all()
+            objects = storage.all(my_list[0])
             key = my_list[0] + '.' + my_list[1]
             if key in objects:
                 print(objects[key])
@@ -105,7 +105,7 @@ class HBNBCommand(cmd.Cmd):
                 raise NameError()
             if len(my_list) < 2:
                 raise IndexError()
-            objects = storage.all()
+            objects = storage.all(my_list[0])
             key = my_list[0] + '.' + my_list[1]
             if key in objects:
                 del objects[key]
@@ -167,7 +167,7 @@ class HBNBCommand(cmd.Cmd):
                 raise NameError()
             if len(my_list) < 2:
                 raise IndexError()
-            objects = storage.all()
+            objects = storage.all(my_list[0])
             key = my_list[0] + '.' + my_list[1]
             if key not in objects:
                 raise KeyError()
@@ -202,7 +202,7 @@ class HBNBCommand(cmd.Cmd):
             my_list = split(line, " ")
             if my_list[0] not in self.all_classes:
                 raise NameError()
-            objects = storage.all()
+            objects = storage.all(my_list[0])
             for key in objects:
                 name = key.split('.')
                 if name[0] == my_list[0]:
