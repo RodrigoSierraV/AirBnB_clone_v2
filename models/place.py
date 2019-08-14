@@ -33,3 +33,14 @@ class Place(BaseModel):
     latitude = Column(Float)
     longitude = Column(Float)
     amenity_ids = []
+    reviews = relationship('Review', backref='place')
+
+    @property
+    def reviews(self):
+        """ getter for reviews """
+
+            tmp_list = []
+            for key, obj in models.storage.items():
+                if "Review" in key and obj.place_id == self.id:
+                    tmp_list.append(obj)
+            return tmp_list
