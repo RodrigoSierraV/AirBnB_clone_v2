@@ -39,8 +39,8 @@ class Place(BaseModel, Base):
     def reviews(self):
         """ getter for reviews """
 
-            tmp_list = []
-            for key, obj in models.storage.items():
-                if "Review" in key and obj.place_id == self.id:
-                    tmp_list.append(obj)
-            return tmp_list
+        tmp_list = []
+        for key, obj in models.storage.items():
+            if "Review" in key and obj.place_id == self.id:
+                tmp_list.append(obj)
+        return tmp_list
