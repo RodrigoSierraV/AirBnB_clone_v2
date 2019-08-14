@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """This is the place class"""
 from models.base_model import BaseModel
-
+from sqlalchemy import Column, String, Float, Integer
+from sqlalchemy.orm import relationship
+from sqlalchemy import ForeignKey
 
 class Place(BaseModel):
     """This is the class for Place
