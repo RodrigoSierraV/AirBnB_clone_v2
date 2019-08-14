@@ -9,7 +9,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
-if environ['HBNB_TYPE_STORAGE'] == 'db':
+if 'HBNB_TYPE_STORAGE' in environ and environ['HBNB_TYPE_STORAGE'] == 'db':
     from models.engine import db_storage
     storage = db_storage.DBStorage()
     storage.reload()
