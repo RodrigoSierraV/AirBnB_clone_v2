@@ -34,6 +34,7 @@ class DBStorage:
     def all(self, cls=None):
         """ doc """
 
+        print(cls)
         ret_dic = {}
         if cls is not None:
             response = self.__session.query(eval(cls))
