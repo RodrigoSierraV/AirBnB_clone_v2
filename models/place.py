@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """This is the place class"""
+from os import environ
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, Float, Integer
 from sqlalchemy.orm import relationship
@@ -42,16 +43,35 @@ class Place(BaseModel, Base):
     latitude = Column(Float)
     longitude = Column(Float)
     amenity_ids = []
-    amenities = relationship("Amenity", secondary="place_amenity",
-                             viewonly=False, back_populates="place_amenities")
-    reviews = relationship('Review', backref='place')
+    if 'HBNB_TYPE_STORAGE' in environ and environ['HBNB_TYPE_STORAGE'] == 'db':
+        amenities = relationship("Amenity", secondary="place_amenity",
+                                 viewonly=False,
+                                 back_populates="place_amenities")
+        reviews = relationship('Review', backref='place')
+    else:
+        @property
+        def reviews(self):
+            """ getter for reviews """
 
-    @property
-    def reviews(self):
-        """ getter for reviews """
+            tmp_list = []
+            for key, obj in models.storage.items():
+                if "Review" in key and obj.place_id == self.id:
+                    tmp_list.append(obj)
+            return tmp_list
 
-        tmp_list = []
-        for key, obj in models.storage.items():
-            if "Review" in key and obj.place_id == self.id:
-                tmp_list.append(obj)
-        return tmp_list
+        @property
+        def amenities(self):
+            """ getter for amentities """
+
+            tmp_list = []
+            for id_ in amenity_ids:
+                tmp_list.append(models.storage.get("Amenity." + id_))
+                print(tmp_list)
+            return tmp_list
+
+        @amenities.setter
+        def amenities(self, obj):
+            """ setter for amenities """
+
+            if (obj.__class__.__name__ == "Amenity"):
+                amenity_ids.append(str(obj.id))
