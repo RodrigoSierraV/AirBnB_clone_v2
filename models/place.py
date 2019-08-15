@@ -66,7 +66,6 @@ class Place(BaseModel, Base):
             tmp_list = []
             for id_ in amenity_ids:
                 tmp_list.append(models.storage.get("Amenity." + id_))
-                print(tmp_list)
             return tmp_list
 
         @amenities.setter
