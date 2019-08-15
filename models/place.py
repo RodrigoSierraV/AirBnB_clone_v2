@@ -64,7 +64,7 @@ class Place(BaseModel, Base):
             """ getter for amentities """
 
             tmp_list = []
-            for id_ in amenity_ids:
+            for id_ in self.amenity_ids:
                 tmp_list.append(models.storage.get("Amenity." + id_))
             return tmp_list
 
