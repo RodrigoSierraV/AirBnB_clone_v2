@@ -83,7 +83,7 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(type(self.place.longitude), float)
         self.assertEqual(type(self.place.amenity_ids), list)
 
-    @unittest.skipIf(os.getenv['HBNB_TYPE_STORAGE'] == 'db',
+    @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db',
                      'Not supported in Data Base mode')
     def test_save_Place(self):
         """test if the save works"""
