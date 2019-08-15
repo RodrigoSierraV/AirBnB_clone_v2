@@ -11,7 +11,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-from models.engine.db_storage import DBStorage
+from models.engine.file_storage import FileStorage
 
 
 class TestDBStorage(unittest.TestCase):
@@ -24,6 +24,7 @@ class TestDBStorage(unittest.TestCase):
         cls.user.first_name = "Kev"
         cls.user.last_name = "Yo"
         cls.user.email = "1234@yahoo.com"
+        cls.storage = FileStorage()
 
     @classmethod
     def teardown(cls):
@@ -45,15 +46,15 @@ class TestDBStorage(unittest.TestCase):
 
     def test_all(self):
         """tests if all works in DB Storage"""
-        storage = DBStorage()
+        storage = FileStorage()
         obj = storage.all()
         self.assertIsNotNone(obj)
         self.assertEqual(type(obj), dict)
-        self.assertIs(obj, storage._DBStorage__objects)
+        self.assertIs(obj, storage._FileStorage__objects)
 
     def test_new(self):
         """test when new is created"""
-        storage = DBStorage()
+        storage = FileStorage()
         obj = storage.all()
         user = User()
         user.id = 123455
