@@ -73,4 +73,4 @@ class Place(BaseModel, Base):
             """ setter for amenities """
 
             if (obj.__class__.__name__ == "Amenity"):
-                amenity_ids.append(str(obj.id))
+                self.amenity_ids.append(str(obj.id))
