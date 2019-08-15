@@ -15,7 +15,7 @@ from models.engine.db_storage import DBStorage
 
 
 class TestDBStorage(unittest.TestCase):
-    '''this will test the FileStorage'''
+    '''this will test the DBStorage'''
 
     @classmethod
     def setUpClass(cls):
@@ -24,7 +24,6 @@ class TestDBStorage(unittest.TestCase):
         cls.user.first_name = "Kev"
         cls.user.last_name = "Yo"
         cls.user.email = "1234@yahoo.com"
-        cls.storage = DBStorage()
 
     @classmethod
     def teardown(cls):
@@ -63,7 +62,7 @@ class TestDBStorage(unittest.TestCase):
         key = user.__class__.__name__ + "." + str(user.id)
         self.assertIsNotNone(obj[key])
 
-    def test_reload_filestorage(self):
+    def test_reload_dbtorage(self):
         """
         tests reload
         """
