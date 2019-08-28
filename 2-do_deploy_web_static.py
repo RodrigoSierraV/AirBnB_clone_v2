@@ -9,6 +9,7 @@ from os.path import exists
 env.hosts = ['104.196.135.55', '34.73.16.217']
 env.user = 'ubuntu'
 
+
 def do_pack():
     """Generates a compressed archive"""
 
@@ -18,6 +19,7 @@ def do_pack():
     local("sudo tar -zvcf {} web_static".format(archive))
 
     return archive
+
 
 def do_deploy(archive_path):
     """Deploy an archive in a webserver"""
