@@ -11,6 +11,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
+from sqlalchemy.orm.session import Session
 
 
 class DBStorage:
@@ -71,3 +72,8 @@ class DBStorage:
         Base.metadata.create_all(self.__engine)
         tmpSession = sessionmaker(bind=self.__engine, expire_on_commit=False)
         self.__session = scoped_session(tmpSession)()
+
+    def close(self):
+        """call close() method on the ORM"""
+
+        Session.close(self.__session)

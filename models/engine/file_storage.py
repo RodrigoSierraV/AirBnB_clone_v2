@@ -68,3 +68,8 @@ class FileStorage:
             if to_delete in self.__objects.keys():
                 del self.__objects[to_delete]
                 self.save()
+
+    def close(self):
+        """deserializing the JSON file to objects"""
+
+        self.reload()
