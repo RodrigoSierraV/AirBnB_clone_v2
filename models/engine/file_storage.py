@@ -25,9 +25,12 @@ class FileStorage:
         Return:
             returns a dictionary of __object
         """
-        if cls:
+        if type(cls) == str:
             return {key: value for key, value in self.__objects.items()
                     if value.__class__.__name__ == cls}
+        elif cls:
+            return {key: value for key, value in self.__objects.items()
+                    if value.__class__.__name__ == cls.__name__}
         return self.__objects
 
     def new(self, obj):
