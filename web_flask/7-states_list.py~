@@ -1,0 +1,18 @@
+#!/usr/bin/python3
+"""
+starts a Flask web application /states_list: display a HTML
+page: (inside the tag BODY)
+"""
+
+from flask import Flask, render_template
+from models import *
+
+app = Flask(__name__)
+
+
+@app.route('/states_list', strict_slashes=False)
+def statesList():
+    """lists all State objects present in DBStorage"""
+
+    states = models.storage.all('State')
+    return render_template()
