@@ -5,7 +5,7 @@ page: (inside the tag BODY)
 """
 
 from flask import Flask, render_template
-from models import *
+import models
 
 app = Flask(__name__)
 
