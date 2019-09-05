@@ -14,7 +14,7 @@ app = Flask(__name__)
 def statesList():
     """lists all State objects present in DBStorage"""
 
-    states = models.storage.all('State')
+    states = sorted(models.storage.all('State').values(), key=lambda n: n.name)
     return render_template('7-states_list.html', states=states)
 
 
