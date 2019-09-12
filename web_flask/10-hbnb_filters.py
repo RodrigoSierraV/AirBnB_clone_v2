@@ -15,6 +15,7 @@ def filters():
     """lists all State objects present in DBStorage"""
 
     states = models.storage.all('State')
+    print(states, type(states))
     amenities = models.storage.all('Amenity')
     return render_template('10-hbnb_filters.html', states=states,
                            amenities=amenities)
