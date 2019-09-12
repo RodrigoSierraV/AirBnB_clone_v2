@@ -14,8 +14,8 @@ app = Flask(__name__)
 def filters():
     """lists all State objects present in DBStorage"""
 
-    states = models.storage.all('State').values()
-    amenities = models.storage.all('Amenity').values()
+    states = models.storage.all('State')
+    amenities = models.storage.all('Amenity')
     return render_template('10-hbnb_filters.html', states=states,
                            amenities=amenities)
 
